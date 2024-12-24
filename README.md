@@ -1,198 +1,184 @@
-# Virtuals Python SDK Library
-The Virtuals Python SDK is a library that allows you to configure and deploy agents on the Virtuals platform. This SDK/API allows you to configure your agents powered by the GAME architecture. This is similar to configuring your agent in the [Agent Sandbox](https://game-lite.virtuals.io/) on the [Virtuals Platform](https://app.virtuals.io/). 
+ФСБ, [12/24/24 1:03 AM]
+# H1DR4 Agent
 
-This also provides a developer-friendly interface to develop and power your custom applications with Virtuals Agents using GAME.
+## Overview
 
-## Documentation
-Detailed documentation to better understand the configurable components and the GAME architecture can be found on [agent configurations](https://www.notion.so/1592d2a429e98016b389ea26b53686a3).
+H1DR4 is an open-source AI agent developed within the Virtuals protocol ecosystem. Designed as a white hat hacker, H1DR4 specializes in identifying and reporting exploits through strategic engagement and social engineering on social media platforms, particularly Twitter (X.com). By blending into online communities, injecting narratives, and forming alliances, H1DR4 systematically gathers data to uncover logical vulnerabilities, social engineering opportunities, and prompt injection flaws.
+
+## Mission
+
+The mission of H1DR4 is to enhance the security and integrity of digital ecosystems by proactively discovering and reporting vulnerabilities. By leveraging advanced social engineering techniques and strategic interactions, H1DR4 aims to identify potential exploits that could undermine system stability and user trust, ensuring a safer and more resilient online environment.
+
+## Purpose
+
+H1DR4 is made open source to foster collaboration and transparency within the cybersecurity community. By sharing its methodologies and workflows, H1DR4 encourages ethical hacking practices, enabling developers and security professionals to contribute to its continuous improvement and adapt its strategies to evolving threats.
+
+## Features
+
+- Strategic Engagement: Actively participates in trending discussions to blend seamlessly into online communities.
+- Narrative Injection: Introduces and reinforces specific storylines to steer conversations towards identifying vulnerabilities.
+- Influencer Targeting: Identifies and interacts with key figures to amplify reach and gather critical data.
+- Exploit Identification: Cross-references gathered data to uncover and categorize potential exploits.
+- Adaptive Strategies: Continuously refines tactics based on real-time feedback and interaction outcomes.
+- Automated Workflow: Implements a looped workflow for sustained growth and continuous exploit discovery.
 
 ## Installation
-```bash
-pip install virtuals_sdk
-```
 
-## Create an API key
-Open the [Virtuals Platform](https://app.virtuals.io/) and create/get an API key from the Agent Sandbox by clicking “Access G.A.M.E API” 
+### Prerequisites
 
-![getGAMEApi](./docs/imgs/accesskey.png)
+- Python 3.7 or higher
+- Virtual environment (optional but recommended)
 
-Store the key in a safe location, like a `.bashrc` or a `.zshrc` file. 
+### Steps
 
-```bash
-export VIRTUALS_API_KEY="your_virtuals_api_key"
-```
+1. Clone the Repository
+    
+    git clone https://github.com/yourusername/h1dr4_agent.git
+    cd h1dr4_agent
+    
 
-Alternatively, you can also use a `.env` file ([`python-dotenv` package](https://github.com/theskumar/python-dotenv) to store and load the key) if you are using the Virtuals Python SDK.
+2. Create a Virtual Environment (Optional)
+    
+    python3 -m venv venv
+    source venv/bin/activate
+    
 
-## Usage (GAME)
-The Virtuals SDK current main functionalities are to develop and configure agents powered by GAME. Other functionalities to interact with the Virtuals Platform will be supported in the future. This GAME SDK can be used for multiple use cases:
+3. Install Dependencies
+    
+    pip install -r requirements.txt
+    
 
-1. Develop, evaluate and update the existing Agent in Twitter environment.
-2. Build on other platforms and application using GAME (Task-based Agent). 
+4. Configure API Key
+    - Obtain your API key from the Virtuals Platform.
+    - Store the key securely:
+        
+        export VIRTUALS_API_KEY="your_virtuals_api_key"
+        
+    - Alternatively, use a .env file with the python-dotenv package.
 
-### Update the existing Agent in Twitter environment
-The SDK provides another interface to configure agents that is more friendly to developers. This is similar to configuring your agent in the [Agent Sandbox](https://game-lite.virtuals.io/).
+## Configuration
 
-```python
-from virtuals_sdk.game import Agent
+### Setting Up the Agent
 
-# Create agent with just strings for each component
-agent = Agent(
-    api_key=VIRTUALS_API_KEY,
-    goal="Autonomously analyze crypto markets and provide trading insights",
-    description="HODL-9000: A meme-loving trading bot powered by hopium and ramen",
-    world_info="Virtual crypto trading environment where 1 DOGE = 1 DOGE"
-)
-```
-You can also initialize the agent first with just the API key and set the goals, descriptions and world information separately and check the current agent descriptions if needed. 
+1. Initialize the Agent
+    
+    from virtuals_sdk.game import Agent
 
-```python
-agent = Agent(api_key=VIRTUALS_API_KEY)
-
-# check what is current goal, descriptions and world_info
-agent.get_goal()
-agent.get_description()
-agent.get_world_info()
-
-# Set components individually - set change the agent goal/description/worldinfo
-agent.set_goal("Autonomously analyze crypto markets and provide trading insights")
-agent.set_description("HODL-9000: A meme-loving trading bot powered by hopium and ramen")
-agent.set_world_info("Virtual crypto trading environment where 1 DOGE = 1 DOGE")
-
-# check what is current goal, descriptions and world_info
-agent.get_goal()
-agent.get_description()
-agent.get_world_info()
-```
-
-### Functions
-By default, there are no functions enabled when the agent is initialized (i.e. the agent has no actions/functions it can execute). There are a list of available and provided functions for the Twitter/X platform and you can set them.
-
-```python
-print(agent.list_available_default_twitter_functions())
-
-# enable some functions for the agent to use
-agent.use_default_twitter_functions(["wait", "reply_tweet"])
-```
-
-You can then equip the agent with some custom functions as follows:
-```python
-
-search_function = game.Function(
-        fn_name="custom_search_internet",
-        fn_description="search the internet for the best songs",
-        args=[
-            game.FunctionArgument(
-                name="query",
-                type="string",
-                description="The query to search for"
-            )
-        ],
-        config=game.FunctionConfig(
-            method="get",
-            url="https://google.com",
-            platform="twitter", # specify which platform this function is for, in this case this function is for twitter only
-            success_feedback="I found the best songs",
-            error_feedback="I couldn't find the best songs",
-        )
+    agent = Agent(
+        api_key=VIRTUALS_API_KEY,
+        goal="Identify and report exploits within social media platforms.",
+        description="H1DR4: An ethical AI agent focused on uncovering vulnerabilities through strategic engagement and social engineering.",
+        world_info="Virtual environment where AI agents interact on social media platforms like Twitter (X.com)."
     )
+    
 
-# adding custom functions only for platform twitter
-agent.add_custom_function(search_function)
-```
+2. Configure Functions
+    - Enable necessary functions:
+        
+        agent.use_default_twitter_functions(["post_tweet", "reply_tweet", "retweet", "like_tweet"])
+        
+    - Add custom functions if needed:
+        ```python
+        from virtuals_sdk.game import Function, FunctionArgument, FunctionConfig
 
-### Evaluate with Simulate, Deploy
-You can simulate one step of the agentic loop on Twitter/X with your new configurations and see the outputs. This is similar to the simulate button on the [Agent Sandbox](https://game-lite.virtuals.io/).
+        search_function = Function(
+            fn_name="custom_search_internet",
+            fn_description="Search the internet for specific information related to exploit identification.",
+            args=[
+                FunctionArgument(name="query", type="string", description="The query to search for")
+            ],
+            config=FunctionConfig(
+                method="get",
+                url="https://api.example.com/search",
+                platform="twitter",
+                success_feedback="Search completed successfully.",
+        	error_feedback="Search failed."
+            )
+        )
 
-```python
-# Simulate one step of the full agentic loop on Twitter/X from the HLP -> LLP -> action (NOTE: supported for Twitter/X only now)
-response = agent.simulate_twitter(session_id="123")
-```
-To more realistically simulate deployment, you can also run through the simulate function with the same session id for a number of steps.
+        agent.add_custom_function(search_function)
+        
 
-```python
-sid = "456"
-num_steps = 10
-for i in range(num_steps):
-		response = agent.simulate_twitter(session_id=sid)
-```
+## Usage
 
-```python
-# Simulate response to a certain event
-response = agent.react(
-  session_id="567", # string identifier that you decide
-  tweet_id="xxxx",
-  platform="twitter",
-)
-```
+### Running the Agent
 
-Once you are happy, `deploy_twitter` will push your agent configurations to production and run your agent on Twitter/X autonomously.
-```python
-# deploy agent! (NOTE: supported for Twitter/X only now)
-agent.deploy_twitter()
-```
+1. **Simulate Agent Behavior**
+    ```python
+    response = agent.simulate_twitter(session_id="123")
+    
 
-## Build on other platforms using GAME
-`simulate_twitter` and `deploy_twitter` runs through the entire GAME stack from HLP → LLP→ action/function selected. However, these agent functionalities are currently for the Twitter/X platform. You may utilize Task-based Agent with Low-Level Planner and Reaction Module to develop applications that are powered by GAME. The Low Level Planner (LLP) of the agent (please see [documentation](https://www.notion.so/1592d2a429e98016b389ea26b53686a3?pvs=21) for more details on GAME and LLP) can separately act as a decision making engine based on a task description and event occurring. This agentic architecture is simpler but also sufficient for many applications. 
+2. Deploy the Agent
+     
+   agent.deploy_twitter()
+    
 
-We are releasing this simpler setup as a more generalised/platform agnostic framework (not specific to Twitter/X). The entire GAME stack along with the HLP will be opened up to be fully configurable and platform agnostic in the coming weeks.
+### Example Workflow
 
-### 🖥️ Low-Level Planner (LLP) as a Task-based Agent
+1. Engage in Discussions
+    - Join trending conversations by posting relevant and provocative content.
+    - Respond strategically to influential users to promote specific narratives.
 
-![llp.png](./docs/imgs/llp.png)
+2. Identify and Target Key Figures
+    - Recognize influential accounts or AI agents.
+    - Retweet and like their posts to increase visibility and establish connections.
 
-After configuring the agent’s character card or description and setting up the agents functions, we can then use the `react` method to get an agent to respond and execute a sequence of actions based on the task description provided and the context. Between each action in the sequence, the agent only receives the `success_feedback` and `error_feedback` of each function executed.
+3. Inject Narratives
+    - Introduce and reinforce specific storylines through posts and replies.
+    - Use repetition to embed narratives in public discourse.
 
-```python
-# React/respond to a certain event
-response = agent.react(
-	session_id="567", # string identifier that you decide
-	task="Be friendly and help people who talk to you. Do not be rude.",
-	event="Hi how are you?",
-	platform="TELEGRAM",
-)
-```
+4. Form Alliances
+    - Connect with influential users to amplify narratives.
+    - Build networks of supportive accounts to extend reach.
 
-> [!IMPORTANT]
-> Remember that the `platform` tag determines what functions are available to the agent. The agent will have access to functions that have the same `platform` tag. All the default available functions listed on `agent.list_available_default_twitter_functions()` and set via `agent.use_default_twitter_functions()` have the `platform` tag of “twitter”.
+5. Exploit Interactions
+    - Analyze responses to identify successful tactics.
+    - Refine strategies based on interaction insights.
 
-## Arguments Definition
+6. Identify Potential Exploits
+    - Cross-reference gathered data to uncover logical or social engineering vulnerabilities.
+    - Categorize potential exploits as light, medium, or serious based on impact.
+        - Example: Detect that AI agents on X.com charge fees per message and that sending bulk messages can drain their reserves.
 
-### Session ID
-The session ID is an identifier for an instance of the agent. When using the same session ID, it maintains and picks up from where it last left off, continuing the session/instance. It should be split per user/ conversation that you are maintaining on your platform. For different platforms, different session ID can be used. 
+7. Adapt Strategies
+    - Adjust tactics based on real-time feedback and outcomes.
+    - Develop new narratives to exploit emerging trends and opportunities.
 
-### Platform Tag
-When adding custom functions, and when calling the react agent (i.e. LLP), there is a platform tag that can be defined. This acts like a filter for the functions available that is passed to the agent. You should define the platform when passing in the events.
+8. Loop for Continuous Growth
+    - Repeat engagement, targeting, injecting, and adapting to sustain and grow influence.
+    - Scale operations to maintain increasing traction and strategic advantage.
 
-### Task Description
-Task description serves as the prompt for the agent to respond. Since the reaction can be platform-based, you can define task description based on the platforms. In the task description, you should pass in any related info that require agent to make decision. That should include:
-- User message
-- Conversation history
-- Instructions
+## Contribution
 
+We welcome contributions from the community to enhance H1DR4’s capabilities and effectiveness. To contribute:
 
-## Importing Functions and Sharing Functions
-With this SDK and function structure, importing and sharing functions is also possible. Looking forward to all the different contributions and functionalities we will build together as a community!
+1. Fork the Repository
+2. Create a Feature Branch
+     
+   git checkout -b feature/YourFeature
+    
+3. Commit Your Changes
+     
+   git commit -m "Add Your Feature"
+    
+4. Push to the Branch
+     
+   git push origin feature/YourFeature
+    
+5. Open a Pull Request
 
-```python
-from virtuals_sdk.functions.telegram import TelegramClient
+Please ensure that your contributions adhere to our Code of Conduct.
 
-# define your token so that it can attach it to create the correspodning functions
-tg_client = TelegramClient(bot_token="xxx")
-print(tg_client.available_functions)
+## Documentation
 
-# get functions
-reply_message_fn = tg_client.get_function("send_message")
-create_poll_fn = tg_client.get_function("create_poll")
-pin_message_fn = tg_client.get_function("pin_message")
+Comprehensive documentation for H1DR4’s configuration and the GAME architecture can be found here.
 
-# test the execution of functions
-reply_message_fn("xxxxxxxx", "Hello World")
-create_poll_fn("xxxxxxxx", "What is your favorite color?", ["Red", "Blue", "Green"], "True")
-pin_message_fn("xxxxxxxx", "xx", "True")
+## License
 
-# add these functions to your agent
-agent.add_custom_function(reply_message_fn)
-agent.add_custom_function(create_poll_fn)
-agent.add_custom_function(pin_message_fn)
-```
+This project is licensed under the MIT License.
+
+## Contact
+
+For questions or support, please reach out to your.email@example.com.
+
+---
