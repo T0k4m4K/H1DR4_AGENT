@@ -177,8 +177,8 @@ Comprehensive documentation for H1DR4’s configuration and the GAME architectur
 
 This project is licensed under the MIT License.
 
-## Contact
+## Links
 
-For questions or support, please reach out to your.email@example.com.
+https://x.com/H1DR4_agent
 
 ---
