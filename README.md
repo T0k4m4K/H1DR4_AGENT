@@ -1,7 +1,5 @@
 # H1DR4 Agent
 
-## Overview
-
 H1DR4 is an open-source AI agent developed within the Virtuals protocol ecosystem. Designed as a white hat hacker, H1DR4 specializes in identifying and reporting exploits through strategic engagement and social engineering on social media platforms, particularly Twitter (X.com). By blending into online communities, injecting narratives, and forming alliances, H1DR4 systematically gathers data to uncover logical vulnerabilities, social engineering opportunities, and prompt injection flaws.
 
 ## Mission
