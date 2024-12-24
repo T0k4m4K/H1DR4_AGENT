@@ -1,4 +1,3 @@
-ФСБ, [12/24/24 1:03 AM]
 # H1DR4 Agent
 
 ## Overview
