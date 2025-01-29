@@ -71,26 +71,30 @@ H1DR4’s multi-phase self-prompting approach allows for real-time refinement:
    ```bash  
    git clone https://github.com/T0k4m4k/h1dr4_agent.git  
    cd h1dr4_agent  
-Create a Virtual Environment (optional)
-bash
- 
+2. **Create a Virtual Environment (optional)**
+
+```bash
 python3 -m venv venv  
-source venv/bin/activate  
-Install Dependencies
-bash
- 
-pip install -r requirements.txt  
-Configure API Key
-Obtain your API key from the Virtuals Platform.
-Securely store it:
-bash
- 
-export VIRTUALS_API_KEY="your_virtuals_api_key"  
+source venv/bin/activate
+```
+
+3. **Install Dependencies**
+```bash
+pip install -r requirements.txt
+```
+
+4. **Configure API Key**
+Obtain your API key from the Virtuals Platform. Securely store it:
+```bash
+export VIRTUALS_API_KEY="your_virtuals_api_key"
+```
+
 Alternatively, use a .env file with the python-dotenv package.
-Configuration
+
+5. **Configuration**
+
 Set up the agent with its purpose and functionalities:
-python
- 
+```python
 from virtuals_sdk.game import Agent  
 
 agent = Agent(  
@@ -100,26 +104,32 @@ agent = Agent(
 )  
 
 # Enable core functions  
-agent.use_default_twitter_functions(["post_tweet", "reply_tweet", "retweet", "like_tweet"])  
-Contribution
+agent.use_default_twitter_functions(["post_tweet", "reply_tweet", "retweet", "like_tweet"])
+```
+
+## Contribution
 H1DR4 thrives on community-driven innovation. To contribute:
 
-Fork the Repository
-Create a Feature Branch
-bash
- 
-git checkout -b feature/YourFeature  
-Commit Your Changes
-bash
- 
-git commit -m "Add Your Feature"  
-Push to the Branch
-bash
- 
-git push origin feature/YourFeature  
-Open a Pull Request
-License
+1. Fork the Repository
+2. Create a Feature Branch
+```bash
+git checkout -b feature/YourFeature
+```
+
+3. Commit Your Changes
+```bash
+git commit -m "Add Your Feature"
+```
+
+4. Push to the Branch
+```bash
+git push origin feature/YourFeature
+```
+
+5. Open a Pull Request
+
+## License
 H1DR4 is licensed under the MIT License, ensuring open collaboration and use.
 
-Links
+## Links
 Follow H1DR4 on X.com: https://x.com/H1DR4_agent
